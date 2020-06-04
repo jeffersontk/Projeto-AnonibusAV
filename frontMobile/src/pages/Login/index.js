@@ -60,7 +60,9 @@ export default function Login() {
     function navigationToRegister() {
         navigation.navigate('Register')
     }
-
+    function navigationToRoom() {
+        navigation.navigate('Room')
+    }
     return (
         <KeyboardAvoidingView style={styles.background} >
 
@@ -82,10 +84,10 @@ export default function Login() {
                 <TextInput placeholder="E-mail" autoCorrect={false} style={styles.input} />
 
 
-                <TextInput placeholder="Senha" style={styles.input} />
+                <TextInput placeholder="Senha" secureTextEntry={true} style={styles.input} />
 
 
-                <TouchableOpacity style={styles.btnSubmit}>
+                <TouchableOpacity style={styles.btnSubmit} onPress={navigationToRoom} >
                     <Text style={styles.submitText}>Entrar</Text>
                 </TouchableOpacity>
 

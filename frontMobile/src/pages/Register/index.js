@@ -1,49 +1,103 @@
-import React from 'react'
-import { View, Image, Text, TextInput, TouchableOpacity, KeyboardAvoidingView } from 'react-native'
+import React, { useState, useEffect } from 'react'
+import { View, Image, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, Animated, Keyboard } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
-import logoBlack from '../../assets/logo.png'
+
+import logoWhite from '../../assets/logoWhite.png'
 
 import styles from './styles'
 
 export default function Register() {
+    const [offset] = useState(new Animated.ValueXY({ x: 0, y: 95 }))
+    const [opacity] = useState(new Animated.Value(0))
+    const [logo] = useState(new Animated.ValueXY({ x: 270, y: 65 }))
+    useEffect(() => {
+        KeyboardDidShowListener = Keyboard.addListener('keyboardDidShow', keyboardDidShow)
+        KeyboardDidHideListener = Keyboard.addListener('keyboardDidHide', keyboardDidHide)
+
+        Animated.parallel([
+
+            Animated.spring(offset.y, {
+                toValue: 0,
+                speed: 0.3,
+                bounciness: 5
+            }),
+            Animated.timing(
+                opacity, {
+                toValue: 1,
+                duration: 800
+            }
+            )
+        ]).start()
+    }, [])
+
+    function keyboardDidShow() {
+        Animated.parallel([
+            Animated.timing(logo.x, {
+                toValue: 165,
+                duration: 300,
+            }),
+            Animated.timing(logo.y, {
+                toValue: 42,
+                duration: 300,
+            })
+        ]).start()
+    }
+    function keyboardDidHide() {
+        Animated.parallel([
+            Animated.timing(logo.x, {
+                toValue: 270,
+                duration: 300,
+            }),
+            Animated.timing(logo.y, {
+                toValue: 65,
+                duration: 300,
+            })
+        ]).start()
+    }
+
     const navigation = useNavigation()
 
     function navigationToLogin() {
         navigation.navigate('Login')
     }
+    function navigationToRoom() {
+        navigation.navigate('Room')
+    }
+
     return (
-        <KeyboardAvoidingView style={styles.container} >
-            <View style={styles.border} >
-                <View style={styles.content} >
-                    <Image style={styles.logo} source={logoBlack} />
-                    <Text style={styles.headerText}>
-                        Crie sua conta e tenha conversas de forma anonima
-                    </Text>
-                    <View style={styles.form}>
-                        <Text>Login</Text>
-                        <TextInput style={styles.input} />
-                    </View>
-                    <View style={styles.form}>
-                        <Text>Nome Anonimo</Text>
-                        <TextInput style={styles.input} />
-                    </View>
-                    <View style={styles.form}>
-                        <Text>Senha</Text>
-                        <TextInput style={styles.input} />
-                    </View>
-                    <View style={styles.buttonMenu}>
-                        <TouchableOpacity style={styles.button}>
-                            <Text>Cadastrar</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.opacityButton} onPress={navigationToLogin} >
-                            <Text style={styles.signin}>Já tenho login</Text>
-                        </TouchableOpacity>
-                    </View>
-                    <TouchableOpacity style={styles.termos} >
-                        <Text style={styles.termosText}> Termos de uso </Text>
-                    </TouchableOpacity>
-                </View>
+
+        <KeyboardAvoidingView style={styles.background} >
+
+            <View style={styles.containerLogo} >
+                <Animated.Image style={{
+                    width: logo.x,
+                    height: logo.y
+                }} source={logoWhite} />
             </View>
+            <Animated.View style={[styles.container, {
+                opacity: opacity,
+                transform: [
+                    { translateY: offset.y }
+                ]
+            }]} >
+
+                <TextInput placeholder="E-mail" autoCorrect={false} style={styles.input} />
+                <TextInput placeholder="Apelido Anonimo" maxLength={20} autoCorrect={false} style={styles.input} />
+                <TextInput secureTextEntry={true} placeholder="Senha" style={styles.input} />
+
+                <TouchableOpacity style={styles.btnSubmit} onPress={navigationToRoom} >
+                    <Text style={styles.submitText}>Cadastrar</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={styles.btnRegister} onPress={navigationToLogin}>
+                    <Text style={styles.registerText}>Já tenho login!</Text>
+                </TouchableOpacity>
+
+                <TouchableOpacity style={styles.termos} >
+                    <Text style={styles.termosText}> Termos de uso </Text>
+                </TouchableOpacity>
+            </Animated.View>
+
         </KeyboardAvoidingView>
     )
 }

@@ -1,72 +1,55 @@
 import { StyleSheet } from 'react-native'
-import Constants from 'expo-constants'
 
 
 export default StyleSheet.create({
+    background: {
+        flex: 1,
+        backgroundColor: '#000',
+        alignItems: 'center',
+        justifyContent: 'center',
+
+    },
+    containerLogo: {
+        flex: 1,
+        justifyContent: 'center',
+    },
     container: {
         flex: 1,
-        paddingTop: Constants.statusBarHeight + 10,
-        backgroundColor: '#000',
+        alignItems: 'center',
         justifyContent: 'center',
-        alignItems: 'center'
-
-    },
-    border: {
-        flex: 1,
-        padding: 10,
-        backgroundColor: '#fff',
-        borderRadius: 10,
-        marginBottom: 10
-
-    },
-    content: {
-        flex: 1,
-        borderWidth: 5,
-        borderRadius: 10,
-        padding: 10,
-
-    },
-    headerText: {
-        fontSize: 32,
-        marginTop: 10,
-        marginBottom: 20
-    },
-    form: {
-        paddingTop: 10,
+        width: '90%'
     },
     input: {
-        height: 40,
-        borderWidth: 1,
-        borderRadius: 5,
+        backgroundColor: '#fff',
+        width: '90%',
+        height: 50,
+        marginBottom: 15,
+        color: '#222',
+        fontSize: 18,
+        borderRadius: 7,
+        padding: 10
     },
-    buttonMenu: {
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        marginTop: 20
-    },
-    button: {
-        justifyContent: 'center',
-        alignItems: 'center',
-        borderWidth: 1,
-        width: 120,
-        height: 30,
 
-        borderRadius: 5,
-    },
-    opacityButton: {
-        justifyContent: 'center',
+    btnSubmit: {
+        backgroundColor: '#fff',
+        width: '90%',
+        height: 45,
         alignItems: 'center',
-        width: 120,
-        height: 30,
+        justifyContent: 'center',
+        borderRadius: 7
     },
-    singnin: {
-        textDecorationLine: 'underline',
-        textDecorationStyle: 'solid',
-        textDecorationColor: '#000',
+    submitText: {
+        fontSize: 18
+    },
+    btnRegister: {
+        marginTop: 15
+    },
+    registerText: {
+        color: '#fff',
+        fontSize: 16
     },
     termos: {
-        marginTop: 60,
+        marginTop: 30,
         alignItems: 'center',
 
     },
