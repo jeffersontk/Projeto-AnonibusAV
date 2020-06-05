@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { View, Image, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, Animated, Keyboard } from 'react-native'
+import { View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, Animated, Keyboard } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 
 import logoWhite from '../../assets/logoWhite.png'
