@@ -55,5 +55,38 @@ export default StyleSheet.create({
     },
     termosText: {
         color: '#999'
+    },
+    centeredView: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+
+    },
+    modalView: {
+        backgroundColor: '#fff',
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        padding: 10,
+        borderRadius: 10,
+        width: '90%'
+    },
+    modalText: {
+        fontSize: 17,
+        width: '85%',
+    },
+    openButton: {
+
+        borderRadius: 50,
+        height: 30,
+        width: 30,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#000'
+
+    },
+    textStyle: {
+        fontSize: 22,
+        color: '#fff'
     }
+
 })
