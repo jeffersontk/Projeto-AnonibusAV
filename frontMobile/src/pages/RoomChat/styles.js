@@ -2,18 +2,26 @@ import { StyleSheet } from 'react-native'
 import Constants from 'expo-constants'
 
 export default StyleSheet.create({
+    background: {
+        flex: 1,
+        backgroundColor: 'transparent',
+        paddingTop: Constants.statusBarHeight,
+    },
     container: {
         backgroundColor: '#000',
         flex: 1,
-        paddingTop: Constants.statusBarHeight + 10,
+        alignItems: 'center',
+        justifyContent: 'center',
         padding: 10
+
+
     },
     header: {
         flexDirection: 'row',
-        width: '100%',
+        width: '95%',
         justifyContent: 'space-between',
         alignItems: 'center',
-        marginBottom: 20,
+        marginBottom: 10,
     },
     titlePage: {
         color: '#fff',
@@ -23,7 +31,9 @@ export default StyleSheet.create({
     line: {
         height: 2,
         backgroundColor: '#fff',
-        width: '100%'
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '90%'
     },
     containerChat: {
         flex: 1,
@@ -52,5 +62,6 @@ export default StyleSheet.create({
         width: '85%',
         backgroundColor: '#fff',
         borderRadius: 10,
-    }
+    },
+
 })

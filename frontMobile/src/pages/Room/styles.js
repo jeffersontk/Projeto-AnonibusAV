@@ -1,19 +1,30 @@
 import { StyleSheet } from 'react-native'
-
+import Constants from 'expo-constants'
 
 export default StyleSheet.create({
     background: {
         flex: 1,
-        backgroundColor: '#000',
+        backgroundColor: 'rgba(0, 0, 0, 0.1)',
         alignItems: 'center',
         justifyContent: 'center',
+        paddingTop: Constants.statusBarHeight,
 
     },
     containerLogo: {
         flex: 1,
         justifyContent: 'center',
+        alignItems: 'center',
+        width: '90%'
+
     },
     container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        backgroundColor: '#000'
+    },
+    containerRoom: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
@@ -21,7 +32,7 @@ export default StyleSheet.create({
     },
     input: {
         backgroundColor: '#fff',
-        width: '90%',
+        width: '100%',
         height: 50,
         marginBottom: 15,
         color: '#222',
@@ -29,6 +40,7 @@ export default StyleSheet.create({
         borderRadius: 7,
         padding: 10
     },
+
 
     btnSubmit: {
         backgroundColor: '#fff',
@@ -65,10 +77,11 @@ export default StyleSheet.create({
     },
     containerMenu: {
         flex: 1,
-        width: '80%',
+        width: '95%',
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'flex-end',
-        marginBottom: 15,
+        marginBottom: 10,
+        marginRight: 10
     }
 })

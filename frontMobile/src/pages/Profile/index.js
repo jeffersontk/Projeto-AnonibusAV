@@ -2,7 +2,7 @@ import React from 'react'
 import { View, Text, TouchableOpacity, KeyboardAvoidingView, Image } from 'react-native'
 import { useNavigation } from '@react-navigation/native'
 import styles from './styles'
-import btnArrowLeft from '../../assets/img/btnArrowLeft.png'
+import { Icon } from 'react-native-elements'
 import logoIconWhite from '../../assets/img/logoIconWhite.png'
 import iconProfile from '../../assets/img/iconProfile.png'
 
@@ -10,15 +10,15 @@ export default function Profile() {
 
     const navigation = useNavigation()
 
-    function navigationToRoom() {
-        navigation.navigate('Room')
+    function handdleGoback() {
+        navigation.goBack()
     }
     return (
         <KeyboardAvoidingView style={styles.background}  >
             <View style={styles.container}>
                 <View style={styles.iconArrowLeftContainer}>
-                    <TouchableOpacity onPress={navigationToRoom}>
-                        <Image source={btnArrowLeft} style={styles.iconArrowLeft} />
+                    <TouchableOpacity onPress={handdleGoback}>
+                        <Icon name="keyboard-arrow-left" type='material' size={60} color="#fff" />
                     </TouchableOpacity>
                     <Image source={logoIconWhite} style={styles.iconLogo} />
                 </View>

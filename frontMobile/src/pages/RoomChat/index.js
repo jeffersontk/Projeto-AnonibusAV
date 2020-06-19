@@ -3,34 +3,36 @@ import { View, Text, Image, TextInput, KeyboardAvoidingView, TouchableOpacity } 
 import { useNavigation } from '@react-navigation/native'
 import styles from './styles'
 import logoIconWhite from '../../assets/img/logoIconWhite.png'
-import btnArrowLeft from '../../assets/img/btnArrowLeft.png'
+import { Icon } from 'react-native-elements'
 import btnSend from '../../assets/img/btnSend.png'
 import btnAddPhoto from '../../assets/img/btnAddPhoto.png'
 
 export default function RoomChat() {
     const navigation = useNavigation()
-    function navigationToRoom() {
-        navigation.navigate('Room')
+    function handdleGoback() {
+        navigation.goBack()
     }
     return (
-        <KeyboardAvoidingView style={styles.container}>
-            <View style={styles.header}>
-                <TouchableOpacity onPress={navigationToRoom}>
-                    <Image style={{ width: 30, height: 30 }} source={btnArrowLeft} />
-                </TouchableOpacity>
-                <Text style={styles.titlePage}>Ponto</Text>
-                <Image style={{ width: 35, height: 35 }} source={logoIconWhite} />
-            </View>
-            <View style={styles.line}></View>
-            <View style={styles.containerChat}>
-
-            </View>
-            <View style={styles.containerInput}>
-                <View style={styles.input}>
-                    <TextInput style={styles.inputM} placeholder="Mande uma mensagem" />
-                    <Image source={btnAddPhoto} />
+        <KeyboardAvoidingView style={styles.background}>
+            <View style={styles.container}>
+                <View style={styles.header}>
+                    <TouchableOpacity onPress={handdleGoback}>
+                        <Icon name="keyboard-arrow-left" type='material' size={55} color="#fff" />
+                    </TouchableOpacity>
+                    <Text style={styles.titlePage}>Ponto</Text>
+                    <Image style={{ width: 35, height: 35, marginRight: 10 }} source={logoIconWhite} />
                 </View>
-                <Image style={{ width: 40, height: 40 }} source={btnSend} />
+                <View style={styles.line} />
+                <View style={styles.containerChat}>
+
+                </View>
+                <View style={styles.containerInput}>
+                    <View style={styles.input}>
+                        <TextInput style={styles.inputM} placeholder="Mande uma mensagem" />
+                        <Image source={btnAddPhoto} />
+                    </View>
+                    <Image style={{ width: 40, height: 40 }} source={btnSend} />
+                </View>
             </View>
         </KeyboardAvoidingView>
     )

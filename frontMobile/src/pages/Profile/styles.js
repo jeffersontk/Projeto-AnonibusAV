@@ -5,29 +5,33 @@ import Constants from 'expo-constants'
 export default StyleSheet.create({
     background: {
         flex: 1,
-        backgroundColor: "#000",
-        paddingTop: Constants.statusBarHeight + 10,
-        padding: 10,
-
+        backgroundColor: 'transparent',
+        paddingTop: Constants.statusBarHeight,
     },
     container: {
         flex: 1,
         justifyContent: 'center',
+        backgroundColor: '#000',
+
     },
     iconArrowLeftContainer: {
         flexDirection: 'row',
         justifyContent: 'space-between',
         alignItems: 'flex-start',
-        alignItems: 'center'
+        alignItems: 'center',
+        width: '95%'
+
     },
+
     iconLogo: {
-        width: 50,
-        height: 50
+        width: 40,
+        height: 40
     },
     containerProfile: {
         flex: 1,
         alignItems: 'center',
-        justifyContent: 'center'
+        justifyContent: 'center',
+
     },
     photoProfile: {
         borderWidth: 2,
@@ -44,10 +48,12 @@ export default StyleSheet.create({
     },
     containerMenu: {
         flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
     },
 
     itemMenu: {
-        width: '100%',
+        width: '80%',
         alignItems: 'center',
         marginBottom: 15,
         borderWidth: 1,

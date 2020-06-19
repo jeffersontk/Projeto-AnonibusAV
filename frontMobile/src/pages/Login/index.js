@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import { View, Text, TextInput, TouchableOpacity, KeyboardAvoidingView, Animated, Keyboard, Modal, Alert, TouchableHighlight } from 'react-native'
-import { useNavigation } from '@react-navigation/native'
+import AsyncStorage from '@react-native-community/async-storage'
+
 
 import logoWhite from '../../assets/logoWhite.png'
 
 import styles from './styles'
 
-export default function Login() {
+export default function Login({ navigation }) {
     const [offset] = useState(new Animated.ValueXY({ x: 0, y: 95 }))
     const [opacity] = useState(new Animated.Value(0))
     const [logo] = useState(new Animated.ValueXY({ x: 270, y: 65 }))
-    const [email, setEmail] = useState('')
-    const [senha, setSenha] = useState('')
+    const [apelido, setApelido] = useState('')
+
     const [modalVisible, setModalVisible] = useState(false);
 
     useEffect(() => {
@@ -32,6 +33,12 @@ export default function Login() {
             }
             )
         ]).start()
+
+        AsyncStorage.getItem('user').then(user => {
+            if (user) {
+                navigation.navigate('Room', 'user')
+            }
+        })
     }, [])
 
     function keyboardDidShow() {
@@ -59,63 +66,62 @@ export default function Login() {
         ]).start()
     }
 
-    const navigation = useNavigation()
+
 
     function navigationToRegister() {
         navigation.navigate('Register')
     }
-    function navigationToRoom() {
-        navigation.navigate('Room')
+    async function navigationToBusMaps() {
+        await AsyncStorage.setItem('user', apelido)
+        navigation.navigate('BusMaps', { user: apelido })
     }
     return (
         <KeyboardAvoidingView style={styles.background} >
+            <View style={styles.container}>
+                <View style={styles.containerLogo} >
+                    <Animated.Image style={{
+                        width: logo.x,
+                        height: logo.y
+                    }} source={logoWhite} />
+                </View>
+                <Animated.View style={[styles.containerAnimated, {
+                    opacity: opacity,
+                    transform: [
+                        { translateY: offset.y }
+                    ]
+                }]} >
 
-            <View style={styles.containerLogo} >
-                <Animated.Image style={{
-                    width: logo.x,
-                    height: logo.y
-                }} source={logoWhite} />
-            </View>
-            <Animated.View style={[styles.container, {
-                opacity: opacity,
-                transform: [
-                    { translateY: offset.y }
-                ]
-            }]} >
+                    <TextInput placeholder="Apelido" autoCorrect={false} style={styles.input} onChangeText={apelido => setApelido(apelido)} Value={apelido} />
 
-                <TextInput placeholder="E-mail" autoCorrect={false} style={styles.input} onChangeText={email => setEmail(email)} Value={email} />
+                    <TouchableOpacity style={styles.btnSubmit} onPress={navigationToBusMaps} >
+                        <Text style={styles.submitText}>Entrar</Text>
+                    </TouchableOpacity>
 
-                <TextInput placeholder="Senha" secureTextEntry={true} style={styles.input} onChangeText={senha => setSenha(senha)} Value={senha} />
+                    <TouchableOpacity style={styles.btnRegister} onPress={navigationToRegister}>
+                        <Text style={styles.registerText}>Não tenho login!</Text>
+                    </TouchableOpacity>
 
-
-                <TouchableOpacity style={styles.btnSubmit} onPress={navigationToRoom} >
-                    <Text style={styles.submitText}>Entrar</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={styles.btnRegister} onPress={navigationToRegister}>
-                    <Text style={styles.registerText}>Não tenho login!</Text>
-                </TouchableOpacity>
-
-                <Modal animationType="slide" transparent={true} visible={modalVisible}
-                    onRequestClose={() => {
-                        Alert.alert("Modal has been closed.");
-                    }}>
-                    <View style={styles.centeredView}>
-                        <View style={styles.modalView}>
-                            <Text style={styles.modalText}>Eu aceito os termos de uso ao me cadastrar neste aplicativo,
+                    <Modal animationType="slide" transparent={true} visible={modalVisible}
+                        onRequestClose={() => {
+                            Alert.alert("Modal has been closed.");
+                        }}>
+                        <View style={styles.centeredView}>
+                            <View style={styles.modalView}>
+                                <Text style={styles.modalText}>Eu aceito os termos de uso ao me cadastrar neste aplicativo,
                                 me responsabilizando por quaisquer atos que fogem de uma boa conduta durante o uso.</Text>
-                            <TouchableHighlight style={styles.openButton} onPress={() => { setModalVisible(!modalVisible); }}>
-                                <Text style={styles.textStyle}>X</Text>
-                            </TouchableHighlight>
+                                <TouchableHighlight style={styles.openButton} onPress={() => { setModalVisible(!modalVisible); }}>
+                                    <Text style={styles.textStyle}>X</Text>
+                                </TouchableHighlight>
+                            </View>
                         </View>
-                    </View>
-                </Modal>
-                <TouchableOpacity style={styles.termos} onPress={() => {
-                    setModalVisible(!modalVisible);
-                }} >
-                    <Text style={styles.termosText}> Termos de uso </Text>
-                </TouchableOpacity>
-            </Animated.View>
+                    </Modal>
+                    <TouchableOpacity style={styles.termos} onPress={() => {
+                        setModalVisible(!modalVisible);
+                    }} >
+                        <Text style={styles.termosText}> Termos de uso </Text>
+                    </TouchableOpacity>
+                </Animated.View>
+            </View>
 
         </KeyboardAvoidingView>
     )

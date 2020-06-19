@@ -1,19 +1,27 @@
 import { StyleSheet } from 'react-native'
 
-
+import Constants from 'expo-constants'
 export default StyleSheet.create({
     background: {
         flex: 1,
-        backgroundColor: '#000',
+        backgroundColor: 'transparent',
         alignItems: 'center',
         justifyContent: 'center',
+        paddingTop: Constants.statusBarHeight,
 
+    },
+    container: {
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'center',
+        width: '100%',
+        backgroundColor: '#000'
     },
     containerLogo: {
         flex: 1,
         justifyContent: 'center',
     },
-    container: {
+    containerAnimated: {
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
@@ -49,8 +57,10 @@ export default StyleSheet.create({
         fontSize: 16
     },
     termos: {
+        flex: 1,
         marginTop: 70,
         alignItems: 'center',
+        justifyContent: 'center',
 
     },
     termosText: {
@@ -71,11 +81,12 @@ export default StyleSheet.create({
         width: '90%'
     },
     modalText: {
-        fontSize: 17,
+        fontSize: 19,
+        fontWeight: 'bold',
         width: '85%',
+        padding: 10,
     },
     openButton: {
-
         borderRadius: 50,
         height: 30,
         width: 30,

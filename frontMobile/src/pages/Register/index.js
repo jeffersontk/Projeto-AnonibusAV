@@ -70,53 +70,54 @@ export default function Register() {
     return (
 
         <KeyboardAvoidingView style={styles.background} >
+            <View style={styles.container}>
+                <View style={styles.containerLogo} >
+                    <Animated.Image style={{
+                        width: logo.x,
+                        height: logo.y
+                    }} source={logoWhite} />
+                </View>
+                <Animated.View style={[styles.containerAnimated, {
+                    opacity: opacity,
+                    transform: [
+                        { translateY: offset.y }
+                    ]
+                }]} >
+                    <View style={styles.containerInput}>
+                        <TextInput placeholder="E-mail" autoCorrect={false} style={styles.input} onChangeText={email => setEmail(email)} Value={email} />
+                        <TextInput placeholder="Apelido Anonimo" maxLength={20} autoCorrect={false} style={styles.input} onChangeText={apelido => setApelido(apelido)} Value={apelido} />
+                        <TextInput secureTextEntry={true} placeholder="Senha" style={styles.input} onChangeText={senha => setSenha(senha)} Value={senha} />
 
-            <View style={styles.containerLogo} >
-                <Animated.Image style={{
-                    width: logo.x,
-                    height: logo.y
-                }} source={logoWhite} />
-            </View>
-            <Animated.View style={[styles.container, {
-                opacity: opacity,
-                transform: [
-                    { translateY: offset.y }
-                ]
-            }]} >
+                        <TouchableOpacity style={styles.btnSubmit} onPress={navigationToRoom} >
+                            <Text style={styles.submitText}>Cadastrar</Text>
+                        </TouchableOpacity>
 
-                <TextInput placeholder="E-mail" autoCorrect={false} style={styles.input} onChangeText={email => setEmail(email)} Value={email} />
-                <TextInput placeholder="Apelido Anonimo" maxLength={20} autoCorrect={false} style={styles.input} onChangeText={apelido => setApelido(apelido)} Value={apelido} />
-                <TextInput secureTextEntry={true} placeholder="Senha" style={styles.input} onChangeText={senha => setSenha(senha)} Value={senha} />
-
-                <TouchableOpacity style={styles.btnSubmit} onPress={navigationToRoom} >
-                    <Text style={styles.submitText}>Cadastrar</Text>
-                </TouchableOpacity>
-
-                <TouchableOpacity style={styles.btnRegister} onPress={navigationToLogin}>
-                    <Text style={styles.registerText}>Já tenho login!</Text>
-                </TouchableOpacity>
-
-                <Modal animationType="slide" transparent={true} visible={modalVisible}
-                    onRequestClose={() => {
-                        Alert.alert("Modal has been closed.");
-                    }}>
-                    <View style={styles.centeredView}>
-                        <View style={styles.modalView}>
-                            <Text style={styles.modalText}>Eu aceito os termos de uso ao me cadastrar neste aplicativo,
-                                me responsabilizando por quaisquer atos que fogem de uma boa conduta durante o uso.</Text>
-                            <TouchableHighlight style={styles.openButton} onPress={() => { setModalVisible(!modalVisible); }}>
-                                <Text style={styles.textStyle}>X</Text>
-                            </TouchableHighlight>
-                        </View>
+                        <TouchableOpacity style={styles.btnRegister} onPress={navigationToLogin}>
+                            <Text style={styles.registerText}>Já tenho login!</Text>
+                        </TouchableOpacity>
                     </View>
-                </Modal>
-                <TouchableOpacity style={styles.termos} onPress={() => {
-                    setModalVisible(!modalVisible);
-                }} >
-                    <Text style={styles.termosText}> Termos de uso </Text>
-                </TouchableOpacity>
-            </Animated.View>
 
+                    <Modal animationType="slide" transparent={true} visible={modalVisible}
+                        onRequestClose={() => {
+                            Alert.alert("Modal has been closed.");
+                        }} >
+                        <View style={styles.centeredView}>
+                            <View style={styles.modalView}>
+                                <Text style={styles.modalText}>Eu aceito os termos de uso ao me cadastrar neste aplicativo,
+                                me responsabilizando por quaisquer atos que fogem de uma boa conduta durante o uso.</Text>
+                                <TouchableHighlight style={styles.openButton} onPress={() => { setModalVisible(!modalVisible); }}>
+                                    <Text style={styles.textStyle}>X</Text>
+                                </TouchableHighlight>
+                            </View>
+                        </View>
+                    </Modal>
+                    <TouchableOpacity style={styles.termos} onPress={() => {
+                        setModalVisible(!modalVisible);
+                    }} >
+                        <Text style={styles.termosText}> Termos de uso </Text>
+                    </TouchableOpacity>
+                </Animated.View>
+            </View>
         </KeyboardAvoidingView>
     )
 }
