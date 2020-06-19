@@ -6,6 +6,7 @@ import { createStackNavigator, CardStyleInterpolators } from '@react-navigation/
 const AppStack = createStackNavigator();
 
 import Login from './pages/Login'
+import BusMaps from './pages/map'
 import Register from './pages/Register'
 import Room from './pages/Room'
 import RoomChat from './pages/RoomChat'
@@ -21,6 +22,7 @@ export default function Routes() {
                 cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS
             }}>
                 <AppStack.Screen name="Login" component={Login} />
+                <AppStack.Screen name="BusMaps" component={BusMaps} />
                 <AppStack.Screen name="Register" component={Register} />
                 <AppStack.Screen name="Room" component={Room} />
                 <AppStack.Screen name="RoomChat" component={RoomChat} />
